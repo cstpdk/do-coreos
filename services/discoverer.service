@@ -1,0 +1,18 @@
+[Unit]
+Description=Service discoverer
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+EnvironmentFile=/etc/environment
+ExecStartPre=/usr/bin/docker pull cstpdk/haproxy-confd
+ExecStart=/usr/bin/docker run \
+  -p 80:80 \
+  --name discoverer \
+  cstpdk/haproxy-confd -node=${COREOS_PRIVATE_IPV4}:4001 -interval=30
+ExecStop=/usr/bin/docker stop -t 2 discoverer
+ExecStop=/usr/bin/docker rm -v -f discoverer
+Restart=always
+
+[X-Fleet]
+Global=true
