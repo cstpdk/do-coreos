@@ -1,9 +1,6 @@
-.PHONY: build run update-discovery-token coreos-token
+.PHONY: build update-discovery-token coreos-token
 
 default: build coreos-token update-discovery-token
-
-run:
-	./run
 
 build: .built
 
@@ -12,6 +9,7 @@ coreos-token:
 
 update-discovery-token:
 	sed -i.bak -r 's|discovery:(.*$$)|discovery: '$(shell cat coreos-token)'|' cloud-config.yaml
+	-rm cloud-config.yaml.bak
 
 .built: .
 	docker build -t do-coreos .

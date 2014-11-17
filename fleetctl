@@ -6,12 +6,15 @@ if [[ "$1" == "ssh" || "$1" == "journal" ]] ; then
 	PREPEND="$PREPEND -it"
 fi
 
+args="$@"
 docker run -v $dir/keys:/.ssh \
 	-u $(id -g `whoami`) \
 	-e FLEETCTL_TUNNEL=`cat $dir/.entry-node` \
 	-e FLEETCTL_STRICT_HOST_KEY_CHECKING=false \
+	-e FLEETCTL_DEBUG=true \
 	-w / -e HOME="/" \
 	-v $dir/services:/services \
 	$PREPEND cstpdk/fleet bash -c \
-	'eval `ssh-agent` &>/dev/null && \
-	ssh-add /.ssh/do &>/dev/null && fleetctl '"$@"
+	"eval \`ssh-agent\` &>/dev/null && \
+	ssh-add /.ssh/do &>/dev/null && \
+	fleetctl $args"
