@@ -1,0 +1,14 @@
+[Unit]
+Description=%p
+
+[Service]
+TimeoutStartSec=0
+EnvironmentFile=/etc/environment
+ExecStartPre=/usr/bin/docker pull registry.local/jenkins
+ExecStartPre=-/bin/bash -c "docker stop -t 2 %p | xargs docker rm -v"
+ExecStart=/usr/bin/docker run -p ${COREOS_PRIVATE_IPV4}::8080 \
+    --privileged --name %p registry.local/%p
+ExecStop=-/bin/bash -c "docker stop -t 2 %p | xargs docker rm -v"
+
+RestartSec=20
+Restart=always

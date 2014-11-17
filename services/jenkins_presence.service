@@ -1,0 +1,12 @@
+[Unit]
+Description=%p
+
+[Service]
+EnvironmentFile=/etc/environment
+ExecStartPre=-/usr/bin/etcdctl mkdir /services/jenkins/hosts
+ExecStartPre=-/usr/bin/etcdctl set /services/jenkins/scheme http
+ExecStart=/bin/bash -c "while true ; do etcdctl set /services/jenkins/hosts/1 \"$(docker port jenkins 8080)\" --ttl=60 ; sleep 30 ; done"
+ExecStop=-/usr/bin/etcdctl rm /services/jenkins/hosts/1
+
+[X-Fleet]
+X-ConditionMachineOf=jenkins.service

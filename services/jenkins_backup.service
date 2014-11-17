@@ -1,0 +1,9 @@
+[Unit]
+Description=%p
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "docker commit jenkins registry.local/jenkins && docker push registry.local/jenkins"
+
+[X-Fleet]
+X-ConditionMachineOf=jenkins.service

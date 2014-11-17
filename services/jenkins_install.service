@@ -1,0 +1,7 @@
+[Unit]
+Description=%p
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/docker pull michaelneale/jenkins-docker-executors
+ExecStart=/usr/bin/docker tag michaelneale/jenkins-docker-executors registry.local/jenkins
