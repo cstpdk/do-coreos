@@ -10,9 +10,9 @@ Run coreos on digital ocean, without dependencies other than docker.
 
 ## Getting started
 
-1. Add Digital Ocean user token to ./run (DO_TOKEN)
+1. Add Digital Ocean user token to .do-token
 
-1. Add Digital Ocean ssh key id to ./run (DO_KEY_ID)
+1. Add Digital Ocean ssh key id to .do-key
 
 1. To get a coreos tokens run
 
@@ -22,7 +22,7 @@ Run coreos on digital ocean, without dependencies other than docker.
 
 	> ./run
 
-	To start a clojure repl. From here, the execellent digital-ocean
+	To start a clojure repl. From here, the excellent digital-ocean
 	library can be used to manage droplets. For convenience a function with
 	default values exists "create-core"
 
