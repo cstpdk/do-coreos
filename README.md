@@ -14,8 +14,10 @@ Run coreos on digital ocean, without dependencies other than docker.
 
 1. Add Digital Ocean ssh key id to .do-key
 
-1. To get a coreos tokens run
+1. If you already have a cluster, then put your coreos token in
+.coreos-token, otherwise make will create it
 
+1. Run
 	> make
 
 1. Run
