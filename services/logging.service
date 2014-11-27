@@ -1,0 +1,11 @@
+[Unit]
+Description=%p
+
+[Service]
+ExecStart=/bin/bash -c "while true ; do cat /etc/hekad.toml ; sleep 2 ; done"
+
+ExecStartPre=/bin/bash -c '\
+echo -e "\
+[DockerInput]\n\
+line2\n\
+"> /etc/hekad.toml'

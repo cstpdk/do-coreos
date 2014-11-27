@@ -1,0 +1,11 @@
+[Unit]
+Description=%p
+
+[Service]
+ExecStart=/usr/bin/docker run debian:testing bash -c 'while true ; do echo "Output" ; sleep 1 ; done'
+
+RestartSec=5
+Restart=always
+
+[X-Fleet]
+Global=true

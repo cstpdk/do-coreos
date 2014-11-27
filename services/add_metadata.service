@@ -1,0 +1,11 @@
+[Unit]
+Description=%p
+
+[Service]
+Type=oneshot
+ExecStartPre=-/usr/bin/mkdir /etc/fleet
+ExecStartPre=/bin/bash -c 'echo metadata="tier=green,purpose=app,persistent=no" > /etc/fleet/fleet.conf'
+ExecStart=/usr/bin/systemctl restart fleet
+
+[X-Fleet]
+MachineID=d3148687
