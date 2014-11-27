@@ -1,14 +1,14 @@
-.PHONY: build update-discovery-token coreos-token
+.PHONY: build update-discovery-token
 
-default: build coreos-token update-discovery-token
+default: build .coreos-token update-discovery-token
 
 build: .built
 
-coreos-token:
+.coreos-token:
 	curl -w "\n" https://discovery.etcd.io/new > $@
 
 update-discovery-token:
-	sed -i.bak -r 's|discovery:(.*$$)|discovery: '$(shell cat coreos-token)'|' cloud-config.yaml
+	sed -i.bak -r 's|discovery:(.*$$)|discovery: '$(shell cat .coreos-token)'|' cloud-config.yaml
 	-rm cloud-config.yaml.bak
 
 .built: .
