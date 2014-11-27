@@ -30,7 +30,7 @@ Run coreos on digital ocean, without dependencies other than docker.
 
 	For instance to create 3 machines named core{1..3}:
 
-	> (doseq [i [1 2 3]] (create-core (str "core" i)))
+>(doseq [i [1 2 3]] (create-core (str "core" i)))
 
 1. To use fleetctl locally an ip to one of the coreos machines have to
 exist in .entry-node for convenience the method "save-entry-node"
