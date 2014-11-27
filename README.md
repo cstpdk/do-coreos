@@ -28,7 +28,7 @@ Run coreos on digital ocean, without dependencies other than docker.
 	library can be used to manage droplets. For convenience a function with
 	default values exists "create-core"
 
-	For instance to create 3 machines name core{1..3}:
+	For instance to create 3 machines named core{1..3}:
 
 	> (doseq [i [1 2 3]] (create-core (str "core" i)))
 
