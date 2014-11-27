@@ -3,4 +3,8 @@
 eval `ssh-agent` &>/dev/null
 ssh-add "keys/do" &>/dev/null
 
-ssh -A core@$(cat .entry-node)
+if [ -z $1 ] ; then
+	ssh -A core@$(cat .entry-node)
+else
+	ssh -A "$1"
+fi
