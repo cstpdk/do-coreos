@@ -44,7 +44,7 @@
 (defn ip
   "Returns a future for the ip of the instance by name"
   [name]
-  (def extract-ip [name]
+  (defn extract-ip [name]
     (:ip_address
       (first (filter #(= "public" (:type %))
         (:v4 (:networks (first (filter #(= name (:name %))
